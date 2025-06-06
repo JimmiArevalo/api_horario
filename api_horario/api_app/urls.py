@@ -27,12 +27,12 @@ router = DefaultRouter()
 # Registra cada ViewSet con el router, especificando el prefijo de la URL
 # y un nombre base (basename) para facilitar la generación de URLs inversas.
 router.register(r'usuarios', UsuarioViewSet, basename='usuario')
-router.register(r'prograculas', MatriculaViewSet, basename='matricula')
-router.register(r'notifmas', ProgramaViewSet, basename='programa')
+router.register(r'matricula', MatriculaViewSet, basename='matricula')
+router.register(r'programa', ProgramaViewSet, basename='programa')
 router.register(r'asignaturas', AsignaturaViewSet, basename='asignatura')
 router.register(r'salones', SalonViewSet, basename='salon')
 router.register(r'horarios', HorarioViewSet, basename='horario')
-router.register(r'matriicaciones', NotificacionViewSet, basename='notificacion')
+router.register(r'notificaciones', NotificacionViewSet, basename='notificacion')
 router.register(r'configuracion', ConfiguracionUsuarioViewSet, basename='configuracion')
 router.register(r'horarios-estudiante', EstudianteHorarioViewSet, basename='estudiante-horario')
 
