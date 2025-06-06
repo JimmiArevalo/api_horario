@@ -3,6 +3,7 @@
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework.permissions import AllowAny
 from django.db.models import Count, Q
 from django.utils import timezone
 from datetime import time
@@ -15,6 +16,7 @@ from .serializers import UsuarioSerializer, ProgramaSerializer # Asegúrate de i
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
+    permission_classes = [AllowAny]
 
 # AÑADIR ESTO: Definición de ProgramaViewSet
 class ProgramaViewSet(viewsets.ModelViewSet):
@@ -239,3 +241,24 @@ class SalonViewSet(viewsets.ModelViewSet):
     # Add permissions if needed, e.g., permission_classes = [permissions.IsAuthenticated]
 
 # ... rest of your views.py
+
+#Public
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def api_root_publica(request):
+    return Response({
+        "usuarios": "/api/usuarios/",
+        "programas": "/api/notifmas/",  # Notaste que este endpoint en tu router se llama notifmas
+        "asignaturas": "/api/asignaturas/",
+        "salones": "/api/salones/",
+        "horarios": "/api/horarios/",
+        "matriculas": "/api/prograculas/",
+        "notificaciones": "/api/matriicaciones/",
+        "configuracion": "/api/configuracion/",
+        "horarios_estudiante": "/api/horarios-estudiante/",
+        # Puedes agregar más rutas si lo deseas
+    })
