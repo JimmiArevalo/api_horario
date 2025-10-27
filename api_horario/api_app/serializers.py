@@ -23,20 +23,6 @@ class UsuarioSerializer(serializers.ModelSerializer):
             'user_permissions': {'required': False}
         }
     
-    def validate_password(self, value):
-        if len(value) < 8:
-            raise serializers.ValidationError("La contraseña debe tener al menos 8 caracteres.")
-        if not any(char.isupper() for char in value):
-            raise serializers.ValidationError("La contraseña debe contener al menos una letra mayúscula.")
-        if not any(char.isdigit() for char in value):
-            raise serializers.ValidationError("La contraseña debe contener al menos un número.")
-        return value
-    
-    def validate_email(self, value):
-        if not value.endswith('@ucundinamarca.edu.co'):
-            raise serializers.ValidationError("Debe usar un correo institucional de la Universidad de Cundinamarca.")
-        return value
-
     def create(self, validated_data):
         # Encripta la contraseña al crear el usuario
         validated_data['password'] = make_password(validated_data['password'])
