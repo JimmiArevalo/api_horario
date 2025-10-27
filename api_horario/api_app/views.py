@@ -18,6 +18,8 @@ class UsuarioViewSet(viewsets.ModelViewSet):
     serializer_class = UsuarioSerializer
     permission_classes = [AllowAny]
 
+    
+
 # AÑADIR ESTO: Definición de ProgramaViewSet
 class ProgramaViewSet(viewsets.ModelViewSet):
     queryset = Programa.objects.all()
