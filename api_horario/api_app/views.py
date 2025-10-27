@@ -18,7 +18,12 @@ class UsuarioViewSet(viewsets.ModelViewSet):
     serializer_class = UsuarioSerializer
     permission_classes = [AllowAny]
 
-    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        rol = self.request.query_params.get('rol', None)
+        if rol:
+            queryset = queryset.filter(rol=rol)
+        return queryset
 
 # AÑADIR ESTO: Definición de ProgramaViewSet
 class ProgramaViewSet(viewsets.ModelViewSet):
